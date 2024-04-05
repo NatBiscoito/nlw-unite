@@ -1,7 +1,3 @@
-<p align="center">
-  <img alt="Logo NLW Expert - Rocketseat" src=".github/logo.png" width="200px" />
-</p>
-
 ## Projeto feito na Next Level Week da RocketSeat Trilha FullStack
 
 <h4>🍪 Linguagens Usadas: </h4>
