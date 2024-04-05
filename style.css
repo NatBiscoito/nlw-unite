@@ -5,128 +5,264 @@
 }
 
 :root {
+    --bg-color: #121214;
+    --text-color: #ffffff;
+    --sub-text-color: #c4c4cc;
+
     --border: 1px solid #ffffff1a;
+    --switch-bg-url: url(./assets/MoonStars.svg);
+    --stroke-color: rgba(255, 255, 255, 0.5);
+    --surface-color: rgba(255, 255, 255, 0.1);
+    --surface-color-hover: rgba(0, 0, 0, 0.05);
+    --social-link-hover: rgba(255, 255, 255, 0.2);
+    --confirm-btn: #9ff9cc;
 }
 
-body, table, input, button {
-    font: 300 16px/140% 'Roboto', sans-serif;
-  }
-  
-  body {
-    background-color: #121214;
-    color: #ffffff;
-  }
+/* Light Mode Variaveis */
+.light {
+    --stroke-color: rgba(0, 0, 0, 0.5);
+    --surface-color: rgba(0, 0, 0, 0.05);
+    --surface-color-hover: rgba(0, 0, 0, 0.01);
+    --switch-bg-url: url(./assets/Sun.svg);
 
-  .container {
+    --border: 1px solid #000000;
+    --bg-color: #F1EADD;
+    --text-color: #121214;
+    --sub-text-color: #161616;
+    --confirm-btn: #db7236;
+
+}
+
+
+
+body, table, input, button {
+    font: 300 16px/200% "Roboto", sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.container {
     max-width: 690px;
     margin: 0 auto;
     padding: 20px 32px;
-  }
-  
-  header {
-    padding: 20px 0;
-  }
+}
 
-  table {
-    border-collapse: collapse;
-  }
-  
-  form {
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+/* Light / Dark Mode */
+
+#switch {
+    position:relative;
+}
+
+#switch button {
+    width: 32px;
+    height: 32px;
+    background: white var(--switch-bg-url) no-repeat center;
+    border: 0;
+    border-radius: 50%;
+    position: absolute;
+    right: 1;
+    z-index: 1;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 0;
+    animation: slide-back 0.4s;
+    cursor: pointer;
+}
+
+#switch button:hover {
+    outline: 8px solid var(--social-link-hover);
+}
+
+.light #switch button {
+    animation: slide-in 0.4s forwards;
+}
+
+#switch span {
+    display: block;
+    width: 64px;
+    height: 24px;
+    border-radius: 9999px;
+    background: var(--surface-color);
+    border: 1px solid var(--stroke-color);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+form {
     border: var(--border);
     border-inline: none;
     padding: 20px 0;
-  }
+}
 
-  fieldset {
+fieldset {
     border: none;
-  }
+}
 
-  fieldset > div {
+/* Seleciona apenas o primeiro nivel de div dentro do elemento */
+fieldset > div {
     display: flex;
     gap: 12px;
-  }
+}
 
-  .input-wrapper {
+.input-wrapper {
     flex: 1;
+    
     display: flex;
     align-items: center;
     gap: 12px;
+
     border: var(--border);
     border-radius: 10px;
-    padding: 8px 12px;
-    font: 400 14px/150% 'Roboto', sans-serif;
-    color: #C4C4CC;
-  }
 
-  fieldset button {
+    padding: 8px 12px;
+
+    font: 400 14px/150% "Roboto", sans-serif;
+    color: var(--sub-text-color);
+}
+
+input {
+    all: unset;
+}
+
+fieldset legend, section h2 {
+    font: 700 16px/140% "Roboto", sans-serif;
+    color: var(--text-color);
+    padding-bottom: 16px;
+}
+
+fieldset button {
+    /* Encaixar no seu conteudo */
     width: fit-content;
     border: 0;
     background: #ff2e2e;
     border-radius: 10px;
     padding: 7px 20px;
 
+    font: 700 12px/24px "Roboto", sans-serif;
+    color: #00292e;
+}
+
+fieldset button:hover {
+    background: #a71e1e;
+}
+
+.lista-participantes {
+    padding: 20px 0;
+}
+
+/* Primeiro nivel de div */
+.lista-participantes > div {
+    border: var(--border);
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    text-align: left;
+}
+
+table thead{
+    font-size: 14px;
+    line-height: 16px;
+}
+
+thead th,
+tbody td {
+    padding: 12px 16px;
+}
+
+tbody td {
+    border-top: var(--border);
+    font-size: 13px;
+    line-height: 15px;
+    color: var(--sub-text-color);
+}
+
+tbody td strong {
+    color: var(--text-color);
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 600;
+}
+
+tbody td small {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+tbody td button {
+    all: unset;
+    color: var(--confirm-btn);
+}
+
+tbody td button:hover {
+    text-decoration: underline;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+/*  */
+@media (max-width:620px ) {
+    .inputs {
+        display: grid;
+        justify-items: center;
+    }
+
+    .inputs .input-wrapper {
+        width: 100%;
+    }
+}
+/* animation */
+
+/* Light/Dark Mode Button*/
+@keyframes slide-in {
+    from {
+        left: 0;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+
+
+/* Light/Dark Mode Button*/
+@keyframes slide-back {
+    from {
+        left: 50%;
+    }
+    to {
+        left: 0;
+    }
+}
+  .apagar {
+    width: fit-content;
+    border: 0;
+    background: #ff2e2e;
+    border-radius: 100px;
+    padding: 1px 10px;
+    margin: 10px;
     font: 700 12px/24px 'Roboto', sans-serif;
     color: #121214;
   }
 
-  fieldset button:hover {
-    background: #c11515a2;
-  }
-
-  fieldset legend, section h2 {
-    font: 700 16px/140% 'Roboto', sans-serif;
-    color: #E1E1E6;
-    padding-bottom: 16px;
-  }
-
-  .lista-participantes {
-    padding: 20px 0;
-  }
-
-  .lista-participantes > div {
-    border: var(--border);
-    border-radius: 8px;
-  }
-
-  input {
-    all: unset;
-  }
-
-  table thead {
-    font-size: 14px;
-    line-height: 16px;
-  }
-  
-  thead th,
-  tbody td {
-    padding: 12px 16px;
-  }
-  
-  tbody td {
-    border-top: var(--border);
-    font-size: 13px;
-    line-height: 15px;
-    color: #c4c4cc;
-  }
-  
-  tbody td strong {
-    color: white;
-    font-size: 14px;
-    line-height: 16px;
-    font-weight: 600;
-  }
-  
-  tbody td small {
-    font-size: 12px;
-    line-height: 16px;
-  }
-  
-  tbody td button {
-    all: unset;
-    color: #9FF9CC;
-  }
-  
-  tbody td button:hover {
-    text-decoration: underline;
-  }
+.apagar:hover {
+    background: #e41a1a;
+}
   
