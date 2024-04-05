@@ -42,7 +42,25 @@ const criarParticipante = (participante) => {
         <br>${participante.email}</td>
         <td>${dataInscricao}</td>
         <td>${dataCheckIn}</td>
+        <button class="apagar" onclick="removerParticipante('${participante.name}')">Remover</button>
     </tr>`;
+}
+
+// Função para remover participante
+const removerParticipante = (name) => {
+    const msgConfirm = 'Deseja confirmar?'
+
+     if(confirm(msgConfirm) == false) {
+        return
+     }
+
+    for (let i = 0; i < participantes.length; i++) {
+        if (participantes[i].name === name) {
+            participantes.splice(i,1);
+            break;
+        }
+    }
+    atualizarLista(participantes)
 }
 
 // Função para atualizar a lista de participantes na tela
@@ -57,11 +75,9 @@ const atualizarLista = (participantes) => {
     document.querySelector('tbody').innerHTML = output;
 }
 
-//Função p/executar a atualização de lista
-atualizarLista(participantes);
-
 //Função p/adicionar um novo participante apartir do formulario
 const adicionarParticipante = (event) => {
+
     event.preventDefault()
 
     const dadosForm = new FormData(event.target)
@@ -83,6 +99,7 @@ const adicionarParticipante = (event) => {
     }
 
     participantes = [participante, ...participantes]
+
 atualizarLista(participantes)
 
  //Limpar o Formulario quando der OutPut
@@ -110,3 +127,28 @@ const fazerCheckIn = (event) => {
     // Atualizar a lista de Participantes
     atualizarLista(participantes)
 }
+
+//Função p/executar a atualização de lista
+atualizarLista(participantes);
+
+
+// Codigozinho de Dark/Light mode
+function toggleMode() {
+
+    const html = document.documentElement
+  
+    html.classList.toggle("light");
+  
+    //Mudar icones no light mode
+  
+    const img1 = document.querySelector();
+    const img2 = document.querySelector();
+  
+    if (html.classList.contains("light")) {
+      img1.setAttribute('src', './assets/name-icon-light.svg');
+      img2.setAttribute('src', './assets/email-icon-light.svg');
+    } else {
+      img1.setAttribute('src', './assets/name-icon.svg');
+      img2.setAttribute('src', './assets/email-icon.svg');
+    }
+  }
